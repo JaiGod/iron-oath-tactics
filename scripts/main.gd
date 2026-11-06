@@ -210,7 +210,7 @@ func show_story(lines: Array, done: Callable) -> void:
 	var row := UI.hbox(8)
 	row.alignment = BoxContainer.ALIGNMENT_END
 	row.add_child(UI.btn("Skip", func(): _story_done(), 80))
-	row.add_child(UI.btn("Next ▶", _story_next, 110))
+	row.add_child(UI.btn("Next »", _story_next, 110))
 	v.add_child(row)
 	_story_show()
 
