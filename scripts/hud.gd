@@ -338,7 +338,7 @@ func _preview(p: Vector2i) -> void:
 		for e in list:
 			var f := b.forecast(sel, e, cur_aid, apos)
 			var kill: bool = int(f["dmg"]) * (2 if f["double"] else 1) >= e.hp
-			s += "[b]%s[/b] → [color=#ff8a7a]%s[/color] (HP %d)%s\n" % [sel.name, e.name, e.hp, "  [color=#ffd24a]KO![/color]" if kill else ""]
+			s += "[b]%s[/b] » [color=#ff8a7a]%s[/color] (HP %d)%s\n" % [sel.name, e.name, e.hp, "  [color=#ffd24a]KO![/color]" if kill else ""]
 			s += "  DMG [b]%d[/b]%s · HIT [b]%d%%[/b] · CRIT %d%%" % [f["dmg"], " x2" if f["double"] else "", f["hit"], f["crit"]]
 			if f["counter"] != null:
 				var c: Dictionary = f["counter"]
