@@ -1,0 +1,69 @@
+name: Test, export & deploy to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Smoke test + Web export + screenshots
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up export templates
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          [ -d ~/.local/share/godot/export_templates/4.3.stable ] || mv /root/.local/share/godot/export_templates/4.3.stable ~/.local/share/godot/export_templates/ || true
+      - name: Import project
+        run: godot --headless --path . --import || true
+      - name: Smoke test (UI flow, battles, camp, save/load, permadeath, all 10 maps)
+        run: |
+          timeout 600 godot --headless --path . res://tests/Smoke.tscn 2>&1 | tee smoke.log
+          grep -q "SMOKE OK" smoke.log
+          ! grep -q "SCRIPT ERROR" smoke.log
+      - name: Export Web (Compatibility renderer, threads off)
+        run: |
+          mkdir -p site/play
+          godot --headless --path . --export-release "Web" site/play/index.html
+          test -f site/play/index.pck
+      - name: Assemble site (landing page at /, game at /play/)
+        run: |
+          cp web/index.html site/index.html
+          cp icon.svg site/icon.svg
+          mkdir -p site/docs && cp -r docs/screenshots site/docs/ || true
+          touch site/.nojekyll
+      - name: Capture screenshots (Xvfb) into /shots/
+        continue-on-error: true
+        run: |
+          apt-get update -qq && apt-get install -y -qq xvfb xauth libgl1-mesa-dri libglx-mesa0 > /dev/null
+          mkdir -p site/shots
+          export SHOTS="$PWD/site/shots"
+          timeout 240 xvfb-run -a -s "-screen 0 1280x720x24" godot --rendering-driver opengl3 --path . --resolution 1280x720 res://tests/Shots.tscn || true
+          PORTRAIT=1 timeout 180 xvfb-run -a -s "-screen 0 1280x1000x24" godot --rendering-driver opengl3 --path . --resolution 390x844 res://tests/Shots.tscn || true
+          ls -la site/shots
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
