@@ -62,7 +62,7 @@ func _ready() -> void:
 	var sp := Control.new()
 	sp.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	foot.add_child(sp)
-	var go := UI.btn("Begin Mission %d  ▶" % (Game.mission + 1), func(): begin.emit(), 220)
+	var go := UI.btn("Begin Mission %d  »" % (Game.mission + 1), func(): begin.emit(), 220)
 	go.add_theme_font_size_override("font_size", 20)
 	foot.add_child(go)
 	_rebuild()
@@ -118,7 +118,7 @@ func _roster() -> void:
 	for i in Game.roster.size():
 		var u: Dictionary = Game.roster[i]
 		var dep: bool = Game.deployed().has(u)
-		var t := "%s%s  Lv%d %s" % ["★ " if dep else "· ", u["name"], u["lvl"], Game.class_name_of(u)]
+		var t := "%s%s  Lv%d %s" % ["» " if dep else "· ", u["name"], u["lvl"], Game.class_name_of(u)]
 		var idx := i
 		var b := UI.btn(t, func():
 			pick = idx
