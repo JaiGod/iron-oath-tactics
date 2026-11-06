@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Iron Oath Tactics — Godot tactics RPG</title>
+<meta name="description" content="Iron Oath Tactics: an original Godot 4 grid-based turn-based fantasy tactics RPG. 8 classes, weapon triangle, height and facing, a 10-mission campaign. Play free in your browser.">
+<link rel="icon" href="icon.svg">
+<style>
+:root{--bg:#0f0c14;--panel:#211a28;--edge:#8a6a35;--gold:#e0b552;--ink:#f1e8d2;--dim:#b3a58c;--blue:#7fb2ff;--red:#e0584a}
+*{box-sizing:border-box}html,body{margin:0;overflow-x:hidden}
+body{background:radial-gradient(ellipse at top,#2c2238 0,var(--bg) 62%);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--gold)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
+header{text-align:center;padding:44px 0 26px}
+.logo{font:900 clamp(40px,10vw,78px)/1 Georgia,serif;letter-spacing:.05em;color:var(--gold);text-shadow:4px 4px 0 #3b2412;margin:0}
+.sub{letter-spacing:.55em;color:#e8d9b8;margin:8px 0 16px;font-size:14px}
+.tag{color:var(--dim);max-width:640px;margin:0 auto 24px}
+.play{display:inline-block;background:linear-gradient(#f0cf78,#c98f2e);color:#2a1606;font-weight:800;font-size:22px;padding:16px 38px;border-radius:10px;text-decoration:none;box-shadow:0 6px 0 #7a4a14,0 0 40px #e0b55255;transition:transform .1s}
+.play:hover{transform:translateY(-2px)}.play:active{transform:translateY(3px);box-shadow:0 3px 0 #7a4a14}
+.small{font-size:13px;color:var(--dim);margin-top:12px}
+.hero{margin:26px auto 0;max-width:820px}.hero img{width:100%;border:2px solid var(--edge);border-radius:10px;display:block}
+h2{color:var(--gold);font:700 26px Georgia,serif;margin:44px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:var(--panel);border:2px solid #3e3048;border-radius:8px;padding:14px 16px}
+.card b{color:var(--gold)}.card p{margin:6px 0 0;color:var(--dim);font-size:14px}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.shots img{width:100%;border:2px solid #3e3048;border-radius:8px;display:block}
+table{width:100%;border-collapse:collapse;font-size:14px}td{padding:6px 8px;border-bottom:1px solid #3a2e44;vertical-align:top}td:first-child{color:var(--gold);white-space:nowrap}
+.cls{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.cls div{background:var(--panel);border-left:4px solid var(--blue);padding:8px 10px;border-radius:6px;font-size:14px}.cls b{display:block;color:var(--ink)}.cls span{color:var(--dim)}
+footer{text-align:center;color:var(--dim);padding:40px 0 50px;font-size:14px}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <h1 class="logo">IRON OATH</h1>
+  <div class="sub">— T A C T I C S —</div>
+  <p class="tag">Lead the Iron Oath mercenary company across ten story missions to break Warlord Vael's grip on Elderreach. An original grid-based, turn-based fantasy tactics RPG made in Godot 4.</p>
+  <a class="play" href="play/">&#9654; Play in browser</a>
+  <div class="small">Free · no install · mouse, keyboard or touch · progress saves automatically</div>
+  <div class="hero"><img src="docs/screenshots/battle.jpg" alt="Isometric battlefield with blue movement tiles" onerror="this.parentNode.style.display='none'"></div>
+</header>
+<main class="wrap">
+  <h2>Features</h2>
+  <div class="grid">
+    <div class="card"><b>Isometric grid with height</b><p>Hills, forests, marsh, rivers, forts and thrones. High ground hits harder and gives archers +1 range.</p></div>
+    <div class="card"><b>Weapon triangle</b><p>Swords beat axes, axes beat lances, lances beat swords. Magic targets resistance instead of armor.</p></div>
+    <div class="card"><b>Facing &amp; backstabs</b><p>Every unit faces a direction. Flank for +20%, strike from behind for +50% and bonus crit.</p></div>
+    <div class="card"><b>Smart enemy AI</b><p>Foes focus wounded and fragile units, avoid your threat zones, seek cover and gang up on healers.</p></div>
+    <div class="card"><b>10-mission campaign</b><p>Rout, Defend, Escort and Seize objectives with reinforcements, bosses and a short story between battles.</p></div>
+    <div class="card"><b>Classic or Casual</b><p>Optional permadeath. Level up, promote at level 8 with an Oath Crest, buy gear and hire mercenaries.</p></div>
+  </div>
+  <h2>Eight classes</h2>
+  <div class="cls">
+    <div><b>Knight → Paladin</b><span>Sword · Shield Bash, Bulwark</span></div>
+    <div><b>Archer → Ranger</b><span>Bow · Aimed Shot, Arrow Rain</span></div>
+    <div><b>Mage → Archmage</b><span>Tome · Fireball, Frost Lance</span></div>
+    <div><b>Healer → Saint</b><span>Staff · Mend, Sanctuary</span></div>
+    <div><b>Rogue → Assassin</b><span>Dagger · Shadowstep, Poison Blade</span></div>
+    <div><b>Lancer → Dragoon</b><span>Lance · Charge, Skewer</span></div>
+    <div><b>Engineer → Artificer</b><span>Hammer · Barricade, Turret</span></div>
+    <div><b>Beastmaster → Warden</b><span>Axe · Call Wolf, Roar</span></div>
+  </div>
+  <h2>Screenshots</h2>
+  <div class="shots">
+    <img src="docs/screenshots/title.jpg" alt="Title screen" loading="lazy">
+    <img src="docs/screenshots/forecast.jpg" alt="Combat forecast" loading="lazy">
+    <img src="docs/screenshots/combat.jpg" alt="Combat" loading="lazy">
+    <img src="docs/screenshots/camp.jpg" alt="Camp and armory" loading="lazy">
+  </div>
+  <h2>Controls</h2>
+  <table>
+    <tr><td>Select / move</td><td>Tap or click a blue unit, then a blue tile</td></tr>
+    <tr><td>Act</td><td>Attack, ability or Wait from the action bar; tap a target to preview, tap again to confirm</td></tr>
+    <tr><td>Inspect</td><td>Tap an enemy to see its threat range; hover or tap tiles for terrain bonuses</td></tr>
+    <tr><td>Camera</td><td>Drag to pan, mouse wheel or +/- to zoom</td></tr>
+    <tr><td>Keys</td><td>Esc cancel / pause · E end turn</td></tr>
+  </table>
+</main>
+<footer class="wrap">
+  <a href="https://github.com/JaiGod/iron-oath-tactics">Source on GitHub</a> · <a href="https://github.com/JaiGod">More JaiGod games</a><br>
+  Made by Jaineil Rana (JaKing) · part of <a href="https://github.com/JaiGod">JaiGod</a> · MIT License
+</footer>
+</body>
+</html>
