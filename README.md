@@ -115,7 +115,7 @@ Lead the Iron Oath mercenary company through ten story missions to break Warlord
   - Enabling 2D MSAA printed warnings in the browser console with GLES3, so I removed it.
   - The escort envoy started at the front and died on turn 1; it now spawns behind the party with HP and DEF that scale per mission.
 - **Testing.** CI runs the smoke test (UI flow, selecting/moving/undo through the real HUD, full HUD-driven battles, camp shop/equip/promote/hire, save/load, permadeath, and a validity check plus ability use and an AI turn on all 10 maps) before exporting.
-- **Beta tested on the live site ✅** (2026-11-05): started a Classic campaign on the GitHub Pages build, played through the opening of mission 1 with mouse input, no console errors.
+- **Beta tested on the live site ✅** (2026-11-05): started a Classic campaign on the GitHub Pages build, started Classic and Continue (save restored from IndexedDB), went through camp, the story, unit selection, movement, Wait and the enemy phase of mission 1 with mouse input; no console errors. The test caught three symbols (a star, a play triangle and an arrow) that the web build's default font cannot draw, so they were swapped for » and ·.
 
 ## 🔗 Links
 
